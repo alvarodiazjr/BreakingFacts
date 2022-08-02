@@ -8,6 +8,9 @@ xhr.responseType = 'json';
 
 xhr.addEventListener('load', function () {
   for (var i = 0; i < xhr.response.length; i++) {
+    if (xhr.response[i].nickname === 'Holly') {
+      continue;
+    }
     var characters = xhr.response[i];
 
     var $column = document.createElement('div');
@@ -22,7 +25,7 @@ xhr.addEventListener('load', function () {
     $img.setAttribute('alt', 'character-img');
     $imgBox.appendChild($img);
 
-    $charList.append($column);
+    $charList.appendChild($column);
   }
   return $charList;
 });
