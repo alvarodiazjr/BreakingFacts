@@ -18,9 +18,9 @@
   flex-basis: 50%;
 }
 
-/* .column-full {
+.column-full {
   flex-basis: 100%;
-} */
+}
 
 .column-one-third {
   flex-basis: calc(100% / 3);
@@ -28,6 +28,10 @@
 
 .justify-center {
   justify-content: center;
+}
+
+.card-img {
+  flex-basis: 100%;
 }
 
 @media screen and (min-width: 768px) {
@@ -39,5 +43,13 @@
   .column-half {
     flex-basis: calc(100% / 5);
     padding: 0 0.75rem;
+  }
+
+  .nowrap {
+    flex-wrap: nowrap;
+  }
+
+  .card-img {
+    flex-basis: 50%;
   }
 }

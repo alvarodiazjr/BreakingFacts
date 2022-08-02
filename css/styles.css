@@ -47,3 +47,23 @@ header {
   font-family: "DM Sans", sans-serif;
   padding: 40px 20px;
 }
+
+.info-card {
+  margin-top: 40px;
+  font-family: "DM Sans", sans-serif;
+  background-color: #f0d6a8;
+  padding: 20px;
+  border: solid black;
+  border-radius: 10px;
+}
+
+.card-text {
+  padding: 10px 20px;
+  width: 100%;
+}
+
+.card-img img {
+  border: solid black;
+  border-radius: 5px;
+  width: 100%;
+}
