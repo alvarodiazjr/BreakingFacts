@@ -1,0 +1,36 @@
+body {
+  background-color: #427852;
+}
+
+header {
+  background-color: #202020;
+}
+
+.logo {
+  width: 150px;
+  height: 100px;
+  padding: 5px;
+}
+
+.column-half,
+.column-one-fifth {
+  padding: 15px;
+}
+
+.img-box img {
+  object-fit: cover;
+  width: 100%;
+  height: 250px;
+  margin-top: 1.5rem;
+  border-radius: 5px;
+  border: solid black;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.img-box:hover {
+  transform: scale(1.1);
+  transition: 0.5s;
+}
