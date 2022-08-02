@@ -34,3 +34,16 @@ header {
   transform: scale(1.1);
   transition: 0.5s;
 }
+
+.text-right {
+  text-align: right;
+}
+
+.home-button {
+  background-color: #202020;
+  border: none;
+  color: white;
+  font-size: 18px;
+  font-family: "DM Sans", sans-serif;
+  padding: 40px 20px;
+}
