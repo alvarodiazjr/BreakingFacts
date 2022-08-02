@@ -1,4 +1,5 @@
 var $charList = document.querySelector('.append');
+var $homePage = document.querySelector('.home-page');
 
 var xhr = new XMLHttpRequest();
 
@@ -31,3 +32,7 @@ xhr.addEventListener('load', function () {
 });
 
 xhr.send();
+
+$charList.addEventListener('click', function () {
+  $homePage.classList.add('hidden');
+});
