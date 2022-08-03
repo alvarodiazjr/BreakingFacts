@@ -1,4 +1,7 @@
 var $charList = document.querySelector('.append');
+var $homePage = document.querySelector('.home-page');
+var $homeButton = document.querySelector('.home-button');
+var $fullCharInfo = document.querySelector('.full-char-info');
 
 var xhr = new XMLHttpRequest();
 
@@ -12,6 +15,7 @@ xhr.addEventListener('load', function () {
       continue;
     }
     var characters = xhr.response[i];
+    data.characters.push(characters);
 
     var $column = document.createElement('div');
     $column.setAttribute('class', 'column-one-fifth column-half');
@@ -23,6 +27,7 @@ xhr.addEventListener('load', function () {
     var $img = document.createElement('img');
     $img.setAttribute('src', characters.img);
     $img.setAttribute('alt', 'character-img');
+    $img.setAttribute('id', characters.name);
     $imgBox.appendChild($img);
 
     $charList.appendChild($column);
@@ -31,3 +36,65 @@ xhr.addEventListener('load', function () {
 });
 
 xhr.send();
+
+$charList.addEventListener('click', function () {
+  $fullCharInfo.replaceChildren();
+  for (var i = 0; i < data.characters.length; i++) {
+    if (data.characters[i].name === event.target.id) {
+      var characters = data.characters[i];
+
+      var $row = document.createElement('div');
+      $row.setAttribute('class', 'row nowrap info-card');
+
+      var $cardImg = document.createElement('div');
+      $cardImg.setAttribute('class', 'card-img');
+      $row.appendChild($cardImg);
+
+      var $img = document.createElement('img');
+      $img.setAttribute('src', characters.img);
+      $img.setAttribute('alt', 'character-img');
+      $cardImg.appendChild($img);
+
+      var $cardText = document.createElement('div');
+      $cardText.setAttribute('class', 'column-full card-text');
+      $row.appendChild($cardText);
+
+      var $name = document.createElement('h1');
+      $name.textContent = characters.name;
+      $cardText.appendChild($name);
+
+      var $nickName = document.createElement('h3');
+      $nickName.textContent = 'Nickname: ' + characters.nickname;
+      $cardText.appendChild($nickName);
+
+      var $birthday = document.createElement('h3');
+      $birthday.textContent = 'DOB: ' + characters.birthday;
+      $cardText.appendChild($birthday);
+
+      var $occupation = document.createElement('h3');
+      $occupation.textContent = 'Occupation: ' + characters.occupation;
+      $cardText.appendChild($occupation);
+
+      var $status = document.createElement('h3');
+      $status.textContent = 'Status: ' + characters.status;
+      $cardText.appendChild($status);
+
+      var $actor = document.createElement('h3');
+      $actor.textContent = 'Actor: ' + characters.portrayed;
+      $cardText.appendChild($actor);
+
+      $fullCharInfo.prepend($row);
+    }
+  }
+  $homePage.classList.add('hidden');
+  $homeButton.classList.remove('hidden');
+  $fullCharInfo.classList.remove('hidden');
+
+  return $fullCharInfo;
+});
+
+$homeButton.addEventListener('click', function () {
+  $homePage.classList.remove('hidden');
+  $homeButton.classList.add('hidden');
+  $fullCharInfo.classList.add('hidden');
+});

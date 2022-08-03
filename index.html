@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,19 +8,28 @@
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@700&family=DM+Sans&family=Open+Sans&display=swap"
+    rel="stylesheet">
 </head>
 <body>
   <header>
     <div class="row text-center">
-      <div class="column-full">
+      <div class="column-one-third"></div>
+      <div class="column-one-third">
         <img src="images/Screen Shot 2022-07-30 at 12.17.17 PM.png" alt="breaking-bad-logo" class="logo">
+      </div>
+      <div class="column-one-third text-right">
+        <button class="home-button hidden">HOME</button>
       </div>
     </div>
   </header>
   <main>
-    <div class="container">
-      <div class="row append justify-center"></div>
-    </div>
+    <form>
+      <div class="container home-page">
+        <div class="row append justify-center"></div>
+      </div>
+      <div class="container full-char-info hidden"></div>
+    </form>
   </main>
   <script src="js/data.js"></script>
   <script src="js/main.js"></script>
