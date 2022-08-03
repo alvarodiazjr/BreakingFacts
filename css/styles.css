@@ -72,6 +72,31 @@ header {
   height: 100%;
 }
 
+.search-bar {
+  padding: 5px 35px;
+  background-color: #f0d6a8;
+  color: black;
+  border: solid black;
+  border-radius: 10px;
+  font-family: "DM Sans", sans-serif;
+  font-size: 20px;
+  width: 70%;
+  height: 40px;
+  outline-style: none;
+}
+
+.search i {
+  position: absolute;
+}
+
+.search-icon {
+  padding: 12px;
+}
+
+/* .cancel-icon {
+  padding: 12px;
+} */
+
 @media screen and (min-width: 768px) {
   .logo {
     width: 150px;

@@ -34,6 +34,10 @@
   flex-basis: 100%;
 }
 
+.margin-top {
+  margin-top: 40px;
+}
+
 @media screen and (min-width: 768px) {
   .container {
     max-width: 1000px;
