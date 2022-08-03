@@ -1,4 +1,3 @@
-// var $form = document.querySelector('form');
 var $charList = document.querySelector('.append');
 var $homePage = document.querySelector('.home-page');
 var $homeButton = document.querySelector('.home-button');
@@ -10,8 +9,6 @@ xhr.open('GET', 'https://www.breakingbadapi.com/api/characters?category=Breaking
 
 xhr.responseType = 'json';
 
-// --- This Function renders the pictures to the home page.------
-
 xhr.addEventListener('load', function () {
   for (var i = 0; i < xhr.response.length; i++) {
     if (xhr.response[i].nickname === 'Holly') {
@@ -19,7 +16,6 @@ xhr.addEventListener('load', function () {
     }
     var characters = xhr.response[i];
     data.characters.push(characters);
-    data.charId.push(characters.char_id);
 
     var $column = document.createElement('div');
     $column.setAttribute('class', 'column-one-fifth column-half');
@@ -39,16 +35,13 @@ xhr.addEventListener('load', function () {
   return $charList;
 });
 
-// ------------------------------------------------------
+xhr.send();
 
 $charList.addEventListener('click', function () {
-  for (var i = 0; i < xhr.response.length; i++) {
-    if (xhr.response[i].nickname === 'Holly') {
-      continue;
-    }
-    if (xhr.response[i].name === event.target.id) {
-
-      var characters = xhr.response[i];
+  $fullCharInfo.replaceChildren();
+  for (var i = 0; i < data.characters.length; i++) {
+    if (data.characters[i].name === event.target.id) {
+      var characters = data.characters[i];
 
       var $row = document.createElement('div');
       $row.setAttribute('class', 'row nowrap info-card');
@@ -96,6 +89,7 @@ $charList.addEventListener('click', function () {
   $homePage.classList.add('hidden');
   $homeButton.classList.remove('hidden');
   $fullCharInfo.classList.remove('hidden');
+
   return $fullCharInfo;
 });
 
@@ -104,5 +98,3 @@ $homeButton.addEventListener('click', function () {
   $homeButton.classList.add('hidden');
   $fullCharInfo.classList.add('hidden');
 });
-
-xhr.send();

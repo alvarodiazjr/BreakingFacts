@@ -7,7 +7,7 @@ header {
 }
 
 .logo {
-  width: 150px;
+  width: 100%;
   height: 100px;
   padding: 5px;
 }
@@ -33,6 +33,7 @@ header {
 .img-box:hover {
   transform: scale(1.1);
   transition: 0.5s;
+  cursor: pointer;
 }
 
 .text-right {
@@ -46,6 +47,7 @@ header {
   font-size: 18px;
   font-family: "DM Sans", sans-serif;
   padding: 40px 20px;
+  cursor: pointer;
 }
 
 .info-card {
@@ -67,5 +69,11 @@ header {
   border: solid black;
   border-radius: 5px;
   width: 100%;
-  height: 358px;
+  height: 100%;
+}
+
+@media screen and (min-width: 768px) {
+  .logo {
+    width: 150px;
+  }
 }
