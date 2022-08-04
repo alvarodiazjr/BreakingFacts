@@ -2,9 +2,11 @@ var $charList = document.querySelector('.append');
 var $homePage = document.querySelector('.home-page');
 var $homeButton = document.querySelector('.home-button');
 var $fullCharInfo = document.querySelector('.full-char-info');
+var $searchWrapper = document.querySelector('.search-wrapper');
 var $searchInput = document.querySelector('.search-bar');
 var $searchIcon = document.querySelector('.search-icon');
 var $cancelSearch = document.querySelector('.cancel-icon');
+var $deathButton = document.querySelector('.death-button');
 
 var xhr = new XMLHttpRequest();
 
@@ -102,6 +104,7 @@ $charList.addEventListener('click', function () {
 });
 
 $homeButton.addEventListener('click', function () {
+  $deathButton.classList.remove('hidden');
   $homePage.classList.remove('hidden');
   $homeButton.classList.add('hidden');
   $fullCharInfo.classList.add('hidden');
@@ -132,4 +135,12 @@ function filterCharacters() {
   }
 }
 
+function deathInfoView() {
+  $deathButton.classList.add('hidden');
+  $homePage.classList.add('hidden');
+  $searchWrapper.classList.add('hidden');
+  $homeButton.classList.remove('hidden');
+}
+
 $searchInput.addEventListener('input', filterCharacters);
+$deathButton.addEventListener('click', deathInfoView);

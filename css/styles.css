@@ -109,6 +109,7 @@ header {
 }
 
 .death-button {
+  cursor: pointer;
   height: 40px;
   width: 80px;
   font-size: 18px;
