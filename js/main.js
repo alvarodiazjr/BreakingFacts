@@ -7,6 +7,7 @@ var $searchInput = document.querySelector('.search-bar');
 var $searchIcon = document.querySelector('.search-icon');
 var $cancelSearch = document.querySelector('.cancel-icon');
 var $deathButton = document.querySelector('.death-button');
+var $deathInfo = document.querySelector('.death-info');
 
 var xhr = new XMLHttpRequest();
 
@@ -140,7 +141,56 @@ function deathInfoView() {
   $homePage.classList.add('hidden');
   $searchWrapper.classList.add('hidden');
   $homeButton.classList.remove('hidden');
+  randomDeathInfo();
 }
+
+var deathData = new XMLHttpRequest();
+
+deathData.open('GET', 'https://www.breakingbadapi.com/api/random-death');
+
+deathData.responseType = 'json';
+
+function randomDeathInfo() {
+  var deathInfo = deathData.response;
+
+  $deathInfo.replaceChildren();
+
+  var $row = document.createElement('div');
+  $row.setAttribute('class', 'row nowrap info-card');
+
+  var $cardImg = document.createElement('div');
+  $cardImg.setAttribute('class', 'card-img');
+  $row.appendChild($cardImg);
+
+  var $img = document.createElement('img');
+  $img.setAttribute('src', deathInfo.img);
+  $cardImg.appendChild($img);
+
+  var $cardText = document.createElement('div');
+  $cardText.setAttribute('class', 'column-full card-text');
+  $row.appendChild($cardText);
+
+  var $name = document.createElement('h1');
+  $name.textContent = deathInfo.death;
+  $cardText.appendChild($name);
+
+  var $causeOfDeath = document.createElement('h3');
+  $causeOfDeath.textContent = 'Cause of Death: ' + deathInfo.cause;
+  $cardText.appendChild($causeOfDeath);
+
+  var $responsible = document.createElement('h3');
+  $responsible.textContent = 'Responsible: ' + deathInfo.responsible;
+  $cardText.appendChild($responsible);
+
+  var $lastWords = document.createElement('h3');
+  $lastWords.textContent = 'Last Words: ' + '"' + deathInfo.last_words + '"';
+  $cardText.appendChild($lastWords);
+
+  $deathInfo.appendChild($row);
+  return $deathInfo;
+}
+
+deathData.send();
 
 $searchInput.addEventListener('input', filterCharacters);
 $deathButton.addEventListener('click', deathInfoView);
