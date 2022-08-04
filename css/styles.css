@@ -108,7 +108,8 @@ header {
   font-size: 20px;
 }
 
-.death-button {
+.death-button,
+.random-death-button {
   cursor: pointer;
   height: 40px;
   width: 80px;
@@ -117,6 +118,17 @@ header {
   background-color: #f0d6a8;
   border: solid #427852;
   border-radius: 5px;
+}
+
+.random-death-button {
+  border: solid black;
+  width: 200px;
+  height: 80px;
+}
+
+.random-death-button-div {
+  margin-top: 40px;
+  text-align: center;
 }
 
 @media screen and (min-width: 768px) {

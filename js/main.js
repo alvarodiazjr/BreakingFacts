@@ -105,6 +105,7 @@ $charList.addEventListener('click', function () {
 });
 
 $homeButton.addEventListener('click', function () {
+  $deathInfo.classList.add('hidden');
   $deathButton.classList.remove('hidden');
   $homePage.classList.remove('hidden');
   $homeButton.classList.add('hidden');
@@ -136,14 +137,6 @@ function filterCharacters() {
   }
 }
 
-function deathInfoView() {
-  $deathButton.classList.add('hidden');
-  $homePage.classList.add('hidden');
-  $searchWrapper.classList.add('hidden');
-  $homeButton.classList.remove('hidden');
-  randomDeathInfo();
-}
-
 var deathData = new XMLHttpRequest();
 
 deathData.open('GET', 'https://www.breakingbadapi.com/api/random-death');
@@ -151,9 +144,9 @@ deathData.open('GET', 'https://www.breakingbadapi.com/api/random-death');
 deathData.responseType = 'json';
 
 function randomDeathInfo() {
-  var deathInfo = deathData.response;
-
   $deathInfo.replaceChildren();
+
+  var deathInfo = deathData.response;
 
   var $row = document.createElement('div');
   $row.setAttribute('class', 'row nowrap info-card');
@@ -186,11 +179,33 @@ function randomDeathInfo() {
   $lastWords.textContent = 'Last Words: ' + '"' + deathInfo.last_words + '"';
   $cardText.appendChild($lastWords);
 
-  $deathInfo.appendChild($row);
+  var $buttonDiv = document.createElement('div');
+  $buttonDiv.setAttribute('class', 'random-death-button-div');
+
+  var $randomDeathButton = document.createElement('button');
+  $randomDeathButton.setAttribute('class', 'random-death-button');
+  $randomDeathButton.textContent = 'Generate Random Death';
+  $buttonDiv.appendChild($randomDeathButton);
+
+  $deathInfo.prepend($row);
+  $deathInfo.appendChild($buttonDiv);
   return $deathInfo;
 }
 
+/* <div>
+  <button class="random-death-button">Generate Random Death</button>
+</div> */
+
 deathData.send();
+
+function deathInfoView() {
+  $deathButton.classList.add('hidden');
+  $homePage.classList.add('hidden');
+  $searchWrapper.classList.add('hidden');
+  $homeButton.classList.remove('hidden');
+  $deathInfo.classList.remove('hidden');
+  randomDeathInfo();
+}
 
 $searchInput.addEventListener('input', filterCharacters);
 $deathButton.addEventListener('click', deathInfoView);
