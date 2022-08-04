@@ -21,6 +21,7 @@ xhr.addEventListener('load', function () {
 
     var $column = document.createElement('div');
     $column.setAttribute('class', 'column-one-fifth column-half char-box');
+    $column.setAttribute('char-name', characters.name);
 
     var $imgBox = document.createElement('div');
     $imgBox.setAttribute('class', 'img-box');
@@ -109,11 +110,18 @@ $searchIcon.addEventListener('click', function () {
   $searchInput.focus();
 });
 
-// $searchInput.addEventListener('keyup', function () {
-//   var name = $searchInput.value.toLowerCase();
-//   for (var i = 0; i < data.characters.length; i++) {
-//     if (data.characters[i].name.toLowerCase().includes(name)) {
-//       console.log('yes');
-//     }
-//   }
-// });
+$searchInput.addEventListener('input', function () {
+  var $charBox = document.querySelectorAll('.char-box');
+  var name = $searchInput.value.toLowerCase();
+  for (var x = 0; x < $charBox.length; x++) {
+    var charName = [];
+    charName.push($charBox[x].getAttribute('char-name'));
+    for (var i = 0; i < charName.length; i++) {
+      if (!charName[i].toLowerCase().includes(name)) {
+        $charBox[x].classList.add('hidden');
+      } else {
+        $charBox[x].classList.remove('hidden');
+      }
+    }
+  }
+});
