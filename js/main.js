@@ -3,7 +3,8 @@ var $homePage = document.querySelector('.home-page');
 var $homeButton = document.querySelector('.home-button');
 var $fullCharInfo = document.querySelector('.full-char-info');
 var $searchInput = document.querySelector('.search-bar');
-var $searchIcon = document.querySelector('i');
+var $searchIcon = document.querySelector('.search-icon');
+var $cancelSearch = document.querySelector('.cancel-icon');
 
 var xhr = new XMLHttpRequest();
 
@@ -21,7 +22,7 @@ xhr.addEventListener('load', function () {
 
     var $column = document.createElement('div');
     $column.setAttribute('class', 'column-one-fifth column-half char-box');
-    $column.setAttribute('char-name', characters.name);
+    $column.setAttribute('char-name', characters.name + ' ' + characters.nickname);
 
     var $imgBox = document.createElement('div');
     $imgBox.setAttribute('class', 'img-box');
@@ -110,7 +111,12 @@ $searchIcon.addEventListener('click', function () {
   $searchInput.focus();
 });
 
-$searchInput.addEventListener('input', function () {
+$cancelSearch.addEventListener('click', function () {
+  $searchInput.value = '';
+  filterCharacters();
+});
+
+function filterCharacters() {
   var $charBox = document.querySelectorAll('.char-box');
   var name = $searchInput.value.toLowerCase();
   for (var x = 0; x < $charBox.length; x++) {
@@ -124,4 +130,6 @@ $searchInput.addEventListener('input', function () {
       }
     }
   }
-});
+}
+
+$searchInput.addEventListener('input', filterCharacters);
