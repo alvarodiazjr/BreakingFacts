@@ -2,6 +2,9 @@ var $charList = document.querySelector('.append');
 var $homePage = document.querySelector('.home-page');
 var $homeButton = document.querySelector('.home-button');
 var $fullCharInfo = document.querySelector('.full-char-info');
+var $searchInput = document.querySelector('.search-bar');
+var $searchIcon = document.querySelector('.search-icon');
+var $cancelSearch = document.querySelector('.cancel-icon');
 
 var xhr = new XMLHttpRequest();
 
@@ -18,13 +21,15 @@ xhr.addEventListener('load', function () {
     data.characters.push(characters);
 
     var $column = document.createElement('div');
-    $column.setAttribute('class', 'column-one-fifth column-half');
+    $column.setAttribute('class', 'column-one-fifth column-half char-box');
+    $column.setAttribute('char-name', characters.name + ' ' + characters.nickname);
 
     var $imgBox = document.createElement('div');
     $imgBox.setAttribute('class', 'img-box');
     $column.appendChild($imgBox);
 
     var $img = document.createElement('img');
+    $img.setAttribute('class', 'characters');
     $img.setAttribute('src', characters.img);
     $img.setAttribute('alt', 'character-img');
     $img.setAttribute('id', characters.name);
@@ -38,6 +43,9 @@ xhr.addEventListener('load', function () {
 xhr.send();
 
 $charList.addEventListener('click', function () {
+  if (event.target.tagName !== 'IMG') {
+    return;
+  }
   $fullCharInfo.replaceChildren();
   for (var i = 0; i < data.characters.length; i++) {
     if (data.characters[i].name === event.target.id) {
@@ -98,3 +106,30 @@ $homeButton.addEventListener('click', function () {
   $homeButton.classList.add('hidden');
   $fullCharInfo.classList.add('hidden');
 });
+
+$searchIcon.addEventListener('click', function () {
+  $searchInput.focus();
+});
+
+$cancelSearch.addEventListener('click', function () {
+  $searchInput.value = '';
+  filterCharacters();
+});
+
+function filterCharacters() {
+  var $charBox = document.querySelectorAll('.char-box');
+  var name = $searchInput.value.toLowerCase();
+  for (var x = 0; x < $charBox.length; x++) {
+    var charName = [];
+    charName.push($charBox[x].getAttribute('char-name'));
+    for (var i = 0; i < charName.length; i++) {
+      if (!charName[i].toLowerCase().includes(name)) {
+        $charBox[x].classList.add('hidden');
+      } else {
+        $charBox[x].classList.remove('hidden');
+      }
+    }
+  }
+}
+
+$searchInput.addEventListener('input', filterCharacters);
