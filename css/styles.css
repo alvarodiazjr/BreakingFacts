@@ -30,6 +30,10 @@ header {
   text-align: center;
 }
 
+.align-center {
+  align-items: center;
+}
+
 .img-box:hover {
   transform: scale(1.1);
   transition: 0.5s;
@@ -102,6 +106,29 @@ header {
 .cancel-icon {
   cursor: pointer;
   font-size: 20px;
+}
+
+.death-button,
+.random-death-button {
+  cursor: pointer;
+  height: 40px;
+  width: 80px;
+  font-size: 18px;
+  font-family: "DM Sans", sans-serif;
+  background-color: #f0d6a8;
+  border: solid #427852;
+  border-radius: 5px;
+}
+
+.random-death-button {
+  border: solid black;
+  width: 200px;
+  height: 80px;
+}
+
+.random-death-button-div {
+  margin-top: 40px;
+  text-align: center;
 }
 
 @media screen and (min-width: 768px) {
