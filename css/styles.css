@@ -49,14 +49,12 @@ header {
   border: none;
   color: white;
   font-size: 18px;
-  font-family: "DM Sans", sans-serif;
   padding: 40px 20px;
   cursor: pointer;
 }
 
 .info-card {
   margin-top: 40px;
-  font-family: "DM Sans", sans-serif;
   background-color: #f0d6a8;
   padding: 20px;
   border: solid black;
@@ -96,7 +94,6 @@ header {
   outline: none;
   border: none;
   font-size: 20px;
-  font-family: "DM Sans", sans-serif;
 }
 
 .search-icon {
@@ -116,7 +113,6 @@ header {
   height: 40px;
   width: 80px;
   font-size: 18px;
-  font-family: "DM Sans", sans-serif;
   background-color: #f0d6a8;
   border: solid #427852;
   border-radius: 5px;

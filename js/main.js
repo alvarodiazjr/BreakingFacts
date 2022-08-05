@@ -229,10 +229,10 @@ function renderQuotes() {
       var quoteData = xhr.response[i];
 
       var $row = document.createElement('div');
-      $row.setAttribute('class', 'row info-card justify-center');
+      $row.setAttribute('class', 'row info-card');
 
       var $quoteDiv = document.createElement('div');
-      $quoteDiv.setAttribute('class', 'quote column-full');
+      $quoteDiv.setAttribute('class', 'column-full');
       $row.appendChild($quoteDiv);
 
       var $quote = document.createElement('h2');
@@ -240,7 +240,7 @@ function renderQuotes() {
       $quoteDiv.appendChild($quote);
 
       var $authorDiv = document.createElement('div');
-      $authorDiv.setAttribute('class', 'author column-full');
+      $authorDiv.setAttribute('class', 'column-full');
       $row.appendChild($authorDiv);
 
       var $author = document.createElement('h1');
