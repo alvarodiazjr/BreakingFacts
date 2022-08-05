@@ -11,6 +11,7 @@ var $deathInfo = document.querySelector('.death-info');
 var $randomDeathDiv = document.querySelector('.random-death-button-div');
 var $randomDeathButton = document.querySelector('.random-death-button');
 var $quoteButton = document.querySelector('.quotes-button');
+var $quoteInfo = document.querySelector('.quote-info');
 
 var xhr = new XMLHttpRequest();
 
@@ -209,15 +210,55 @@ function randomDeathButton() {
   event.preventDefault();
 }
 
-function quoteButtonClick() {
+function renderQuotes() {
+  $quoteInfo.replaceChildren();
+
+  var xhr = new XMLHttpRequest();
+
+  xhr.open('GET', 'https://www.breakingbadapi.com/api/quote/random');
+
+  xhr.responseType = 'json';
+
+  xhr.addEventListener('load', function () {
+    for (var i = 0; i < xhr.response.length; i++) {
+      var quoteData = xhr.response[i];
+
+      var $row = document.createElement('div');
+      $row.setAttribute('class', 'row info-card justify-center');
+
+      var $quoteDiv = document.createElement('div');
+      $quoteDiv.setAttribute('class', 'quote column-full');
+      $row.appendChild($quoteDiv);
+
+      var $quote = document.createElement('h2');
+      $quote.textContent = '"' + quoteData.quote + '"';
+      $quoteDiv.appendChild($quote);
+
+      var $authorDiv = document.createElement('div');
+      $authorDiv.setAttribute('class', 'author column-full');
+      $row.appendChild($authorDiv);
+
+      var $author = document.createElement('h1');
+      $author.textContent = '- ' + quoteData.author;
+      $authorDiv.appendChild($author);
+
+      $quoteInfo.prepend($row);
+    }
+  });
+
   $quoteButton.classList.add('hidden');
   $deathButton.classList.add('hidden');
   $homePage.classList.add('hidden');
   $searchWrapper.classList.add('hidden');
   $homeButton.classList.remove('hidden');
+  $quoteInfo.classList.remove('hidden');
+
+  xhr.send();
+
+  return $quoteInfo;
 }
 
 $searchInput.addEventListener('input', filterCharacters);
 $deathButton.addEventListener('click', randomDeathInfo);
 $randomDeathButton.addEventListener('click', randomDeathButton);
-$quoteButton.addEventListener('click', quoteButtonClick);
+$quoteButton.addEventListener('click', renderQuotes);
