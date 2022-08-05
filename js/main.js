@@ -10,6 +10,10 @@ var $deathButton = document.querySelector('.death-button');
 var $deathInfo = document.querySelector('.death-info');
 var $randomDeathDiv = document.querySelector('.random-death-button-div');
 var $randomDeathButton = document.querySelector('.random-death-button');
+var $quoteButton = document.querySelector('.quotes-button');
+var $quoteInfo = document.querySelector('.quote-info');
+var $randomQuoteDiv = document.querySelector('.random-quote-button-div');
+var $randomQuoteButton = document.querySelector('.random-quote-button');
 
 var xhr = new XMLHttpRequest();
 
@@ -99,6 +103,7 @@ $charList.addEventListener('click', function () {
       $fullCharInfo.prepend($row);
     }
   }
+  $quoteButton.classList.add('hidden');
   $deathButton.classList.add('hidden');
   $homePage.classList.add('hidden');
   $homeButton.classList.remove('hidden');
@@ -114,6 +119,10 @@ $homeButton.addEventListener('click', function () {
   $homePage.classList.remove('hidden');
   $homeButton.classList.add('hidden');
   $fullCharInfo.classList.add('hidden');
+  $quoteButton.classList.remove('hidden');
+  $quoteInfo.classList.add('hidden');
+  $randomQuoteDiv.classList.add('hidden');
+  $randomQuoteButton.classList.add('hidden');
 });
 
 $searchIcon.addEventListener('click', function () {
@@ -187,6 +196,7 @@ function randomDeathInfo() {
     $deathInfo.appendChild($row);
   });
 
+  $quoteButton.classList.add('hidden');
   $deathButton.classList.add('hidden');
   $homePage.classList.add('hidden');
   $searchWrapper.classList.add('hidden');
@@ -205,6 +215,63 @@ function randomDeathButton() {
   event.preventDefault();
 }
 
+function renderQuotes() {
+  $quoteInfo.replaceChildren();
+
+  var xhr = new XMLHttpRequest();
+
+  xhr.open('GET', 'https://www.breakingbadapi.com/api/quote/random');
+
+  xhr.responseType = 'json';
+
+  xhr.addEventListener('load', function () {
+    for (var i = 0; i < xhr.response.length; i++) {
+      var quoteData = xhr.response[i];
+
+      var $row = document.createElement('div');
+      $row.setAttribute('class', 'row info-card');
+
+      var $quoteDiv = document.createElement('div');
+      $quoteDiv.setAttribute('class', 'column-full');
+      $row.appendChild($quoteDiv);
+
+      var $quote = document.createElement('h2');
+      $quote.textContent = '"' + quoteData.quote + '"';
+      $quoteDiv.appendChild($quote);
+
+      var $authorDiv = document.createElement('div');
+      $authorDiv.setAttribute('class', 'column-full');
+      $row.appendChild($authorDiv);
+
+      var $author = document.createElement('h1');
+      $author.textContent = '- ' + quoteData.author;
+      $authorDiv.appendChild($author);
+
+      $quoteInfo.prepend($row);
+    }
+  });
+
+  $quoteButton.classList.add('hidden');
+  $deathButton.classList.add('hidden');
+  $homePage.classList.add('hidden');
+  $searchWrapper.classList.add('hidden');
+  $homeButton.classList.remove('hidden');
+  $quoteInfo.classList.remove('hidden');
+  $randomQuoteDiv.classList.remove('hidden');
+  $randomQuoteButton.classList.remove('hidden');
+
+  xhr.send();
+
+  return $quoteInfo;
+}
+
+function randomQuoteButton() {
+  renderQuotes();
+  event.preventDefault();
+}
+
 $searchInput.addEventListener('input', filterCharacters);
 $deathButton.addEventListener('click', randomDeathInfo);
 $randomDeathButton.addEventListener('click', randomDeathButton);
+$quoteButton.addEventListener('click', renderQuotes);
+$randomQuoteButton.addEventListener('click', randomQuoteButton);
