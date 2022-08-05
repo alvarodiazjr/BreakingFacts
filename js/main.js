@@ -8,6 +8,8 @@ var $searchIcon = document.querySelector('.search-icon');
 var $cancelSearch = document.querySelector('.cancel-icon');
 var $deathButton = document.querySelector('.death-button');
 var $deathInfo = document.querySelector('.death-info');
+var $randomDeathDiv = document.querySelector('.random-death-button-div');
+var $randomDeathButton = document.querySelector('.random-death-button');
 
 var xhr = new XMLHttpRequest();
 
@@ -97,6 +99,7 @@ $charList.addEventListener('click', function () {
       $fullCharInfo.prepend($row);
     }
   }
+  $deathButton.classList.add('hidden');
   $homePage.classList.add('hidden');
   $homeButton.classList.remove('hidden');
   $fullCharInfo.classList.remove('hidden');
@@ -105,6 +108,7 @@ $charList.addEventListener('click', function () {
 });
 
 $homeButton.addEventListener('click', function () {
+  $randomDeathDiv.classList.add('hidden');
   $deathInfo.classList.add('hidden');
   $deathButton.classList.remove('hidden');
   $homePage.classList.remove('hidden');
@@ -137,75 +141,70 @@ function filterCharacters() {
   }
 }
 
-var deathData = new XMLHttpRequest();
-
-deathData.open('GET', 'https://www.breakingbadapi.com/api/random-death');
-
-deathData.responseType = 'json';
-
 function randomDeathInfo() {
   $deathInfo.replaceChildren();
 
-  var deathInfo = deathData.response;
+  var deathData = new XMLHttpRequest();
 
-  var $row = document.createElement('div');
-  $row.setAttribute('class', 'row nowrap info-card');
+  deathData.open('GET', 'https://www.breakingbadapi.com/api/random-death');
 
-  var $cardImg = document.createElement('div');
-  $cardImg.setAttribute('class', 'card-img');
-  $row.appendChild($cardImg);
+  deathData.responseType = 'json';
 
-  var $img = document.createElement('img');
-  $img.setAttribute('src', deathInfo.img);
-  $cardImg.appendChild($img);
+  deathData.addEventListener('load', function () {
+    var deathInfo = deathData.response;
 
-  var $cardText = document.createElement('div');
-  $cardText.setAttribute('class', 'column-full card-text');
-  $row.appendChild($cardText);
+    var $row = document.createElement('div');
+    $row.setAttribute('class', 'row nowrap info-card');
 
-  var $name = document.createElement('h1');
-  $name.textContent = deathInfo.death;
-  $cardText.appendChild($name);
+    var $cardImg = document.createElement('div');
+    $cardImg.setAttribute('class', 'card-img');
+    $row.appendChild($cardImg);
 
-  var $causeOfDeath = document.createElement('h3');
-  $causeOfDeath.textContent = 'Cause of Death: ' + deathInfo.cause;
-  $cardText.appendChild($causeOfDeath);
+    var $img = document.createElement('img');
+    $img.setAttribute('src', deathInfo.img);
+    $cardImg.appendChild($img);
 
-  var $responsible = document.createElement('h3');
-  $responsible.textContent = 'Responsible: ' + deathInfo.responsible;
-  $cardText.appendChild($responsible);
+    var $cardText = document.createElement('div');
+    $cardText.setAttribute('class', 'column-full card-text');
+    $row.appendChild($cardText);
 
-  var $lastWords = document.createElement('h3');
-  $lastWords.textContent = 'Last Words: ' + '"' + deathInfo.last_words + '"';
-  $cardText.appendChild($lastWords);
+    var $name = document.createElement('h1');
+    $name.textContent = deathInfo.death;
+    $cardText.appendChild($name);
 
-  var $buttonDiv = document.createElement('div');
-  $buttonDiv.setAttribute('class', 'random-death-button-div');
+    var $causeOfDeath = document.createElement('h3');
+    $causeOfDeath.textContent = 'Cause of Death: ' + deathInfo.cause;
+    $cardText.appendChild($causeOfDeath);
 
-  var $randomDeathButton = document.createElement('button');
-  $randomDeathButton.setAttribute('class', 'random-death-button');
-  $randomDeathButton.textContent = 'Generate Random Death';
-  $buttonDiv.appendChild($randomDeathButton);
+    var $responsible = document.createElement('h3');
+    $responsible.textContent = 'Responsible: ' + deathInfo.responsible;
+    $cardText.appendChild($responsible);
 
-  $deathInfo.prepend($row);
-  $deathInfo.appendChild($buttonDiv);
-  return $deathInfo;
-}
+    var $lastWords = document.createElement('h3');
+    $lastWords.textContent = 'Last Words: ' + '"' + deathInfo.last_words + '"';
+    $cardText.appendChild($lastWords);
 
-/* <div>
-  <button class="random-death-button">Generate Random Death</button>
-</div> */
+    $deathInfo.appendChild($row);
+  });
 
-deathData.send();
-
-function deathInfoView() {
   $deathButton.classList.add('hidden');
   $homePage.classList.add('hidden');
   $searchWrapper.classList.add('hidden');
   $homeButton.classList.remove('hidden');
   $deathInfo.classList.remove('hidden');
+  $randomDeathDiv.classList.remove('hidden');
+
+  deathData.send();
+
+  return $deathInfo;
+}
+
+function randomDeathButton() {
+  // $deathInfo.classList.add('animation');
   randomDeathInfo();
+  event.preventDefault();
 }
 
 $searchInput.addEventListener('input', filterCharacters);
-$deathButton.addEventListener('click', deathInfoView);
+$deathButton.addEventListener('click', randomDeathInfo);
+$randomDeathButton.addEventListener('click', randomDeathButton);
