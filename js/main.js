@@ -100,6 +100,7 @@ $charList.addEventListener('click', function () {
       $fullCharInfo.prepend($row);
     }
   }
+  $quoteButton.classList.add('hidden');
   $deathButton.classList.add('hidden');
   $homePage.classList.add('hidden');
   $homeButton.classList.remove('hidden');
@@ -214,9 +215,6 @@ function quoteButtonClick() {
   $homePage.classList.add('hidden');
   $searchWrapper.classList.add('hidden');
   $homeButton.classList.remove('hidden');
-  $deathInfo.classList.remove('hidden');
-  $randomDeathDiv.classList.remove('hidden');
-  $randomDeathButton.classList.remove('hidden');
 }
 
 $searchInput.addEventListener('input', filterCharacters);
