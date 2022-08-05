@@ -193,6 +193,7 @@ function randomDeathInfo() {
   $homeButton.classList.remove('hidden');
   $deathInfo.classList.remove('hidden');
   $randomDeathDiv.classList.remove('hidden');
+  $randomDeathButton.classList.remove('hidden');
 
   deathData.send();
 
@@ -200,7 +201,6 @@ function randomDeathInfo() {
 }
 
 function randomDeathButton() {
-  // $deathInfo.classList.add('animation');
   randomDeathInfo();
   event.preventDefault();
 }
