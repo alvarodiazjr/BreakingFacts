@@ -110,7 +110,8 @@ header {
 
 .quotes-button,
 .death-button,
-.random-death-button {
+.random-death-button,
+.random-quote-button {
   cursor: pointer;
   height: 40px;
   width: 80px;
@@ -121,12 +122,14 @@ header {
   border-radius: 5px;
 }
 
+.random-quote-button,
 .random-death-button {
   border: solid black;
   width: 200px;
   height: 80px;
 }
 
+.random-quote-button-div,
 .random-death-button-div {
   margin-top: 40px;
   text-align: center;

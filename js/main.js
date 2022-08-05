@@ -12,6 +12,8 @@ var $randomDeathDiv = document.querySelector('.random-death-button-div');
 var $randomDeathButton = document.querySelector('.random-death-button');
 var $quoteButton = document.querySelector('.quotes-button');
 var $quoteInfo = document.querySelector('.quote-info');
+var $randomQuoteDiv = document.querySelector('.random-quote-button-div');
+var $randomQuoteButton = document.querySelector('.random-quote-button');
 
 var xhr = new XMLHttpRequest();
 
@@ -118,6 +120,9 @@ $homeButton.addEventListener('click', function () {
   $homeButton.classList.add('hidden');
   $fullCharInfo.classList.add('hidden');
   $quoteButton.classList.remove('hidden');
+  $quoteInfo.classList.add('hidden');
+  $randomQuoteDiv.classList.add('hidden');
+  $randomQuoteButton.classList.add('hidden');
 });
 
 $searchIcon.addEventListener('click', function () {
@@ -252,6 +257,8 @@ function renderQuotes() {
   $searchWrapper.classList.add('hidden');
   $homeButton.classList.remove('hidden');
   $quoteInfo.classList.remove('hidden');
+  $randomQuoteDiv.classList.remove('hidden');
+  $randomQuoteButton.classList.remove('hidden');
 
   xhr.send();
 
