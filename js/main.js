@@ -265,7 +265,13 @@ function renderQuotes() {
   return $quoteInfo;
 }
 
+function randomQuoteButton() {
+  renderQuotes();
+  event.preventDefault();
+}
+
 $searchInput.addEventListener('input', filterCharacters);
 $deathButton.addEventListener('click', randomDeathInfo);
 $randomDeathButton.addEventListener('click', randomDeathButton);
 $quoteButton.addEventListener('click', renderQuotes);
+$randomQuoteButton.addEventListener('click', randomQuoteButton);
