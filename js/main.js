@@ -10,6 +10,7 @@ var $deathButton = document.querySelector('.death-button');
 var $deathInfo = document.querySelector('.death-info');
 var $randomDeathDiv = document.querySelector('.random-death-button-div');
 var $randomDeathButton = document.querySelector('.random-death-button');
+var $quoteButton = document.querySelector('.quotes-button');
 
 var xhr = new XMLHttpRequest();
 
@@ -114,6 +115,7 @@ $homeButton.addEventListener('click', function () {
   $homePage.classList.remove('hidden');
   $homeButton.classList.add('hidden');
   $fullCharInfo.classList.add('hidden');
+  $quoteButton.classList.remove('hidden');
 });
 
 $searchIcon.addEventListener('click', function () {
@@ -187,6 +189,7 @@ function randomDeathInfo() {
     $deathInfo.appendChild($row);
   });
 
+  $quoteButton.classList.add('hidden');
   $deathButton.classList.add('hidden');
   $homePage.classList.add('hidden');
   $searchWrapper.classList.add('hidden');
@@ -205,6 +208,18 @@ function randomDeathButton() {
   event.preventDefault();
 }
 
+function quoteButtonClick() {
+  $quoteButton.classList.add('hidden');
+  $deathButton.classList.add('hidden');
+  $homePage.classList.add('hidden');
+  $searchWrapper.classList.add('hidden');
+  $homeButton.classList.remove('hidden');
+  $deathInfo.classList.remove('hidden');
+  $randomDeathDiv.classList.remove('hidden');
+  $randomDeathButton.classList.remove('hidden');
+}
+
 $searchInput.addEventListener('input', filterCharacters);
 $deathButton.addEventListener('click', randomDeathInfo);
 $randomDeathButton.addEventListener('click', randomDeathButton);
+$quoteButton.addEventListener('click', quoteButtonClick);
