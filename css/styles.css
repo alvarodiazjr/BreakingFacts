@@ -49,7 +49,6 @@ header {
   border: none;
   color: white;
   font-size: 18px;
-  padding: 40px 20px;
   cursor: pointer;
 }
 
@@ -79,7 +78,6 @@ header {
   margin: 40px auto 0;
   display: flex;
   align-items: center;
-  justify-content: space-between;
   width: 70%;
   background-color: #f0d6a8;
   border: solid black;
