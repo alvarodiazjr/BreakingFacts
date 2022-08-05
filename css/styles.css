@@ -108,6 +108,7 @@ header {
   font-size: 20px;
 }
 
+.quotes-button,
 .death-button,
 .random-death-button {
   cursor: pointer;
