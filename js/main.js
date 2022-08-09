@@ -25,7 +25,7 @@ xhr.open('GET', 'https://www.breakingbadapi.com/api/characters?category=Breaking
 
 xhr.responseType = 'json';
 
-xhr.addEventListener('load', function () {
+function renderCharList() {
   for (var i = 0; i < xhr.response.length; i++) {
     if (xhr.response[i].nickname === 'Holly') {
       continue;
@@ -52,7 +52,7 @@ xhr.addEventListener('load', function () {
     $charList.appendChild($column);
   }
   return $charList;
-});
+}
 
 xhr.send();
 
@@ -134,10 +134,10 @@ $searchIcon.addEventListener('click', function () {
   $searchInput.focus();
 });
 
-$cancelSearch.addEventListener('click', function () {
+function cancelSearch() {
   $searchInput.value = '';
   filterCharacters();
-});
+}
 
 function filterCharacters() {
   var $charBox = document.querySelectorAll('.char-box');
@@ -284,6 +284,14 @@ function randomQuoteButton() {
   event.preventDefault();
 }
 
+function refreshHomePage() {
+  cancelSearch();
+  event.preventDefault();
+}
+
+xhr.addEventListener('load', renderCharList);
+$cancelSearch.addEventListener('click', cancelSearch);
+$searchAgainButton.addEventListener('click', refreshHomePage);
 $searchInput.addEventListener('input', filterCharacters);
 $deathButton.addEventListener('click', randomDeathInfo);
 $randomDeathButton.addEventListener('click', randomDeathButton);
