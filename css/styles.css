@@ -110,7 +110,8 @@ button:active {
 .quotes-button,
 .death-button,
 .random-death-button,
-.random-quote-button {
+.random-quote-button,
+.search-again-button {
   cursor: pointer;
   height: 40px;
   width: 80px;
@@ -121,7 +122,8 @@ button:active {
 }
 
 .random-quote-button,
-.random-death-button {
+.random-death-button,
+.search-again-button {
   border: solid black;
   width: 200px;
   height: 80px;

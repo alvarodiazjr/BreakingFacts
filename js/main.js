@@ -17,6 +17,7 @@ var $randomQuoteButton = document.querySelector('.random-quote-button');
 var $body = document.querySelector('body');
 var $loadingCircle = document.querySelector('#loader');
 var $noResults = document.querySelector('.search-error');
+var $searchAgainButton = document.querySelector('.search-again-button');
 
 var xhr = new XMLHttpRequest();
 
@@ -154,8 +155,10 @@ function filterCharacters() {
       }
       if (count === 56) {
         $noResults.classList.remove('hidden');
+        $searchAgainButton.classList.remove('hidden');
       } else {
         $noResults.classList.add('hidden');
+        $searchAgainButton.classList.add('hidden');
       }
     }
   }
