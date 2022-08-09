@@ -16,6 +16,7 @@ var $randomQuoteDiv = document.querySelector('.random-quote-button-div');
 var $randomQuoteButton = document.querySelector('.random-quote-button');
 var $body = document.querySelector('body');
 var $loadingCircle = document.querySelector('#loader');
+var $noResults = document.querySelector('.search-error');
 
 var xhr = new XMLHttpRequest();
 
@@ -34,6 +35,7 @@ xhr.addEventListener('load', function () {
     var $column = document.createElement('div');
     $column.setAttribute('class', 'column-one-fifth column-half char-box');
     $column.setAttribute('char-name', characters.name + ' ' + characters.nickname);
+    $column.setAttribute('number', characters.char_id);
 
     var $imgBox = document.createElement('div');
     $imgBox.setAttribute('class', 'img-box');
@@ -139,14 +141,21 @@ $cancelSearch.addEventListener('click', function () {
 function filterCharacters() {
   var $charBox = document.querySelectorAll('.char-box');
   var name = $searchInput.value.toLowerCase();
+  var count = 0;
   for (var x = 0; x < $charBox.length; x++) {
     var charName = [];
     charName.push($charBox[x].getAttribute('char-name'));
     for (var i = 0; i < charName.length; i++) {
       if (!charName[i].toLowerCase().includes(name)) {
         $charBox[x].classList.add('hidden');
+        count++;
       } else {
         $charBox[x].classList.remove('hidden');
+      }
+      if (count === 56) {
+        $noResults.classList.remove('hidden');
+      } else {
+        $noResults.classList.add('hidden');
       }
     }
   }
