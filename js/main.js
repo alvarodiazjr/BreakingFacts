@@ -18,6 +18,8 @@ var $body = document.querySelector('body');
 var $loadingCircle = document.querySelector('#loader');
 var $noResults = document.querySelector('.search-error');
 var $searchAgainButton = document.querySelector('.search-again-button');
+var $networkError = document.querySelector('.network-error-message');
+var $content = document.querySelector('.content');
 
 var xhr = new XMLHttpRequest();
 
@@ -289,15 +291,6 @@ function refreshHomePage() {
   event.preventDefault();
 }
 
-xhr.addEventListener('load', renderCharList);
-$cancelSearch.addEventListener('click', cancelSearch);
-$searchAgainButton.addEventListener('click', refreshHomePage);
-$searchInput.addEventListener('input', filterCharacters);
-$deathButton.addEventListener('click', randomDeathInfo);
-$randomDeathButton.addEventListener('click', randomDeathButton);
-$quoteButton.addEventListener('click', renderQuotes);
-$randomQuoteButton.addEventListener('click', randomQuoteButton);
-
 document.onreadystatechange = function () {
   if (document.readyState !== 'complete') {
     $body.style.visibility = 'hidden';
@@ -307,3 +300,34 @@ document.onreadystatechange = function () {
     $body.style.visibility = 'visible';
   }
 };
+
+function network(online) {
+  if (online) {
+    $networkError.classList.add('hidden');
+    $content.classList.remove('hidden');
+  } else {
+    $networkError.classList.remove('hidden');
+    $content.classList.add('hidden');
+  }
+}
+
+window.addEventListener('load', function () {
+  network(navigator.onLine);
+
+  window.addEventListener('online', function () {
+    network(true);
+  });
+
+  window.addEventListener('offline', function () {
+    network(false);
+  });
+});
+
+xhr.addEventListener('load', renderCharList);
+$cancelSearch.addEventListener('click', cancelSearch);
+$searchAgainButton.addEventListener('click', refreshHomePage);
+$searchInput.addEventListener('input', filterCharacters);
+$deathButton.addEventListener('click', randomDeathInfo);
+$randomDeathButton.addEventListener('click', randomDeathButton);
+$quoteButton.addEventListener('click', renderQuotes);
+$randomQuoteButton.addEventListener('click', randomQuoteButton);

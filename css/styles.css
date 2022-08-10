@@ -111,7 +111,8 @@ button:active {
 .death-button,
 .random-death-button,
 .random-quote-button,
-.search-again-button {
+.search-again-button,
+.network-error-message {
   cursor: pointer;
   height: 40px;
   width: 80px;
@@ -163,6 +164,14 @@ button:active {
   left: 0;
   right: 0;
   margin: auto;
+}
+
+.network-error-message {
+  text-align: center;
+  width: 80%;
+  height: 100%;
+  margin-top: 3rem;
+  border: solid black;
 }
 
 @media screen and (min-width: 768px) {
