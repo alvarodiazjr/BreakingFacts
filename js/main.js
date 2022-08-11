@@ -14,6 +14,12 @@ var $quoteButton = document.querySelector('.quotes-button');
 var $quoteInfo = document.querySelector('.quote-info');
 var $randomQuoteDiv = document.querySelector('.random-quote-button-div');
 var $randomQuoteButton = document.querySelector('.random-quote-button');
+var $body = document.querySelector('body');
+var $loadingCircle = document.querySelector('#loader');
+var $noResults = document.querySelector('.search-error');
+var $searchAgainButton = document.querySelector('.search-again-button');
+var $networkError = document.querySelector('.network-error-message');
+var $content = document.querySelector('.content');
 
 var xhr = new XMLHttpRequest();
 
@@ -21,7 +27,7 @@ xhr.open('GET', 'https://www.breakingbadapi.com/api/characters?category=Breaking
 
 xhr.responseType = 'json';
 
-xhr.addEventListener('load', function () {
+function renderCharList() {
   for (var i = 0; i < xhr.response.length; i++) {
     if (xhr.response[i].nickname === 'Holly') {
       continue;
@@ -32,6 +38,7 @@ xhr.addEventListener('load', function () {
     var $column = document.createElement('div');
     $column.setAttribute('class', 'column-one-fifth column-half char-box');
     $column.setAttribute('char-name', characters.name + ' ' + characters.nickname);
+    $column.setAttribute('number', characters.char_id);
 
     var $imgBox = document.createElement('div');
     $imgBox.setAttribute('class', 'img-box');
@@ -47,7 +54,7 @@ xhr.addEventListener('load', function () {
     $charList.appendChild($column);
   }
   return $charList;
-});
+}
 
 xhr.send();
 
@@ -129,22 +136,31 @@ $searchIcon.addEventListener('click', function () {
   $searchInput.focus();
 });
 
-$cancelSearch.addEventListener('click', function () {
+function cancelSearch() {
   $searchInput.value = '';
   filterCharacters();
-});
+}
 
 function filterCharacters() {
   var $charBox = document.querySelectorAll('.char-box');
   var name = $searchInput.value.toLowerCase();
+  var count = 0;
   for (var x = 0; x < $charBox.length; x++) {
     var charName = [];
     charName.push($charBox[x].getAttribute('char-name'));
     for (var i = 0; i < charName.length; i++) {
       if (!charName[i].toLowerCase().includes(name)) {
         $charBox[x].classList.add('hidden');
+        count++;
       } else {
         $charBox[x].classList.remove('hidden');
+      }
+      if (count === 56) {
+        $noResults.classList.remove('hidden');
+        $searchAgainButton.classList.remove('hidden');
+      } else {
+        $noResults.classList.add('hidden');
+        $searchAgainButton.classList.add('hidden');
       }
     }
   }
@@ -270,6 +286,46 @@ function randomQuoteButton() {
   event.preventDefault();
 }
 
+function refreshHomePage() {
+  cancelSearch();
+  event.preventDefault();
+}
+
+document.onreadystatechange = function () {
+  if (document.readyState !== 'complete') {
+    $body.style.visibility = 'hidden';
+    $loadingCircle.style.visibility = 'visible';
+  } else {
+    $loadingCircle.style.display = 'none';
+    $body.style.visibility = 'visible';
+  }
+};
+
+function network(online) {
+  if (online) {
+    $networkError.classList.add('hidden');
+    $content.classList.remove('hidden');
+  } else {
+    $networkError.classList.remove('hidden');
+    $content.classList.add('hidden');
+  }
+}
+
+window.addEventListener('load', function () {
+  network(navigator.onLine);
+
+  window.addEventListener('online', function () {
+    network(true);
+  });
+
+  window.addEventListener('offline', function () {
+    network(false);
+  });
+});
+
+xhr.addEventListener('load', renderCharList);
+$cancelSearch.addEventListener('click', cancelSearch);
+$searchAgainButton.addEventListener('click', refreshHomePage);
 $searchInput.addEventListener('input', filterCharacters);
 $deathButton.addEventListener('click', randomDeathInfo);
 $randomDeathButton.addEventListener('click', randomDeathButton);
