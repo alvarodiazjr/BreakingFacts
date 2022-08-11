@@ -1,3 +1,4 @@
-# ajax-project
+# BreakingFacts
 
-A dynamic HTML, CSS, and JavaScript solo project.
+A web application for Breaking Bad fans who want to view info on their favorite characters.
+
