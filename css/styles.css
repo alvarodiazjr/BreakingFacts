@@ -10,21 +10,21 @@ button:active {
   transform: scale(0.95);
 }
 
-.logo {
-  width: 100%;
-  height: 100px;
-  padding: 5px;
+.logo-text {
+  color: white;
+  font-size: 1.25rem;
+  padding: 0.5rem;
 }
 
 .column-half,
 .column-one-fifth {
-  padding: 15px;
+  padding: 1rem;
 }
 
 .img-box img {
   object-fit: cover;
   width: 100%;
-  height: 250px;
+  height: 16rem;
   margin-top: 1.5rem;
   border-radius: 5px;
   border: solid black;
@@ -57,15 +57,15 @@ button:active {
 }
 
 .info-card {
-  margin-top: 40px;
+  margin-top: 3rem;
   background-color: #f0d6a8;
-  padding: 20px;
+  padding: 1rem;
   border: solid black;
-  border-radius: 10px;
+  border-radius: 0.5rem;
 }
 
 .card-text {
-  padding: 10px 20px;
+  padding: 1rem;
   width: 100%;
 }
 
@@ -78,8 +78,8 @@ button:active {
 }
 
 .search-wrapper {
-  padding: 10px;
-  margin: 40px auto 0;
+  padding: 0.5rem;
+  margin: 2rem auto 0;
   display: flex;
   align-items: center;
   width: 70%;
@@ -95,7 +95,7 @@ button:active {
   color: black;
   outline: none;
   border: none;
-  font-size: 20px;
+  font-size: 1.5rem;
 }
 
 .search-icon {
@@ -104,7 +104,7 @@ button:active {
 
 .cancel-icon {
   cursor: pointer;
-  font-size: 20px;
+  font-size: 1.25rem;
 }
 
 .quotes-button,
@@ -114,30 +114,31 @@ button:active {
 .search-again-button,
 .network-error-message {
   cursor: pointer;
-  height: 40px;
-  width: 80px;
-  font-size: 18px;
+  padding: 0.5rem;
+  width: 5rem;
+  font-size: 1rem;
   background-color: #f0d6a8;
   border: solid #427852;
   border-radius: 5px;
+  color: black;
 }
 
 .random-quote-button,
 .random-death-button,
 .search-again-button {
   border: solid black;
-  width: 200px;
-  height: 80px;
+  width: 12rem;
+  padding: 1rem;
 }
 
 .random-quote-button-div,
 .random-death-button-div {
-  margin-top: 40px;
+  margin-top: 3rem;
   text-align: center;
 }
 
 .quote-info {
-  font-size: 20px;
+  font-size: 1.25rem;
   text-align: center;
   width: 80%;
 }
@@ -169,13 +170,14 @@ button:active {
 .network-error-message {
   text-align: center;
   width: 80%;
-  height: 100%;
+  padding: 1rem;
   margin-top: 3rem;
   border: solid black;
 }
 
 @media screen and (min-width: 768px) {
-  .logo {
-    width: 150px;
+  .logo-text {
+    color: white;
+    font-size: 2rem;
   }
 }
