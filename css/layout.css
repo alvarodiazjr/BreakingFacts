@@ -34,6 +34,18 @@
   flex-basis: 100%;
 }
 
+.nowrap {
+  flex-wrap: nowrap;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-left {
+  text-align: left;
+}
+
 @media screen and (min-width: 768px) {
   .container {
     max-width: 1000px;
@@ -43,10 +55,6 @@
   .column-half {
     flex-basis: calc(100% / 5);
     padding: 0 0.75rem;
-  }
-
-  .nowrap {
-    flex-wrap: nowrap;
   }
 
   .card-img {
