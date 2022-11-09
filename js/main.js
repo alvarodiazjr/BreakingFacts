@@ -49,7 +49,6 @@ function renderCharList() {
     $img.setAttribute('src', characters.img);
     $img.setAttribute('alt', 'character-img');
     $img.setAttribute('id', characters.name);
-    // $img.setAttribute('onerror', 'this.onerror=null; this.src="https://st3.depositphotos.com/23594922/31822/v/600/depositphotos_318221368-stock-illustration-missing-picture-page-for-website.jpg"');
     $img.setAttribute('onerror', 'this.onerror=null; this.src="images/no-image.png"');
     $imgBox.appendChild($img);
 
@@ -79,7 +78,6 @@ $charList.addEventListener('click', function () {
       var $img = document.createElement('img');
       $img.setAttribute('src', characters.img);
       $img.setAttribute('alt', 'character-img');
-      // $img.setAttribute('onerror', 'this.onerror=null; this.src="https://st3.depositphotos.com/23594922/31822/v/600/depositphotos_318221368-stock-illustration-missing-picture-page-for-website.jpg"');
       $img.setAttribute('onerror', 'this.onerror=null; this.src="images/no-image.png"');
       $cardImg.appendChild($img);
 
@@ -191,7 +189,6 @@ function randomDeathInfo() {
 
     var $img = document.createElement('img');
     $img.setAttribute('src', deathInfo.img);
-    // $img.setAttribute('onerror', 'this.onerror=null; this.src="https://st3.depositphotos.com/23594922/31822/v/600/depositphotos_318221368-stock-illustration-missing-picture-page-for-website.jpg"');
     $img.setAttribute('onerror', 'this.onerror=null; this.src="images/no-image.png"');
     $cardImg.appendChild($img);
 
