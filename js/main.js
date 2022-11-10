@@ -49,6 +49,7 @@ function renderCharList() {
     $img.setAttribute('src', characters.img);
     $img.setAttribute('alt', 'character-img');
     $img.setAttribute('id', characters.name);
+    $img.setAttribute('onerror', 'this.onerror=null; this.src="images/no-image.png"');
     $imgBox.appendChild($img);
 
     $charList.appendChild($column);
@@ -77,6 +78,7 @@ $charList.addEventListener('click', function () {
       var $img = document.createElement('img');
       $img.setAttribute('src', characters.img);
       $img.setAttribute('alt', 'character-img');
+      $img.setAttribute('onerror', 'this.onerror=null; this.src="images/no-image.png"');
       $cardImg.appendChild($img);
 
       var $cardText = document.createElement('div');
@@ -187,6 +189,7 @@ function randomDeathInfo() {
 
     var $img = document.createElement('img');
     $img.setAttribute('src', deathInfo.img);
+    $img.setAttribute('onerror', 'this.onerror=null; this.src="images/no-image.png"');
     $cardImg.appendChild($img);
 
     var $cardText = document.createElement('div');
